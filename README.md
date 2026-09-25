@@ -20,7 +20,7 @@ Sistema web inteligente para la gestión de inventario en farmacias, que combina
 + Sanchez Gomez Esmeralda Yossibeth
 + TENTLE ZURITA MONICA MONTSERRAT
 
-#FUNCIONALIDADES
+# FUNCIONALIDADES
 
 ## Autenticación y accesos
 - [ ] Login con correo y contraseña
