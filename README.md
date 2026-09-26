@@ -18,7 +18,7 @@ Sistema web inteligente para la gestión de inventario en farmacias, que combina
 + Pérez GarcÍa Jorge Esteban
 + Reyes Ramírez Leyvi Dayana
 + Sanchez Gomez Esmeralda Yossibeth
-+ TENTLE ZURITA MONICA MONTSERRAT
++ Tentle Zurita Monica Monserrat
 
 # FUNCIONALIDADES
 
@@ -91,4 +91,11 @@ Sistema web inteligente para la gestión de inventario en farmacias, que combina
 
 # FECHAS
 + Fecha de inicio: 16 de Septiembre del 2026
-+ Fecha de termino: 20 de Noviembre del 2026
++ Fecha de término: 20 de Noviembre del 2026
++ Metodología: SCRUM, trabajado en 4 sprints de 2 semanas cada uno
+
+## SPRINTS
+- [ ] **Sprint 1:** 16 de Septiembre – 29 de Septiembre del 2026
+- [ ] **Sprint 2:** 30 de Septiembre – 13 de Octubre del 2026
+- [ ] **Sprint 3:** 14 de Octubre – 27 de Octubre del 2026
+- [ ] **Sprint 4:** 28 de Octubre – 10 de Noviembre del 2026
