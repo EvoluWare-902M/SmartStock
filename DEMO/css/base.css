@@ -1,0 +1,26 @@
+
+/* ===== base.css : reset, variables y tipografía ===== */
+:root{
+  --bg:#F5F8F6; --panel:#FFFFFF; --ink:#152420; --muted:#5C6B65;
+  --teal:#10645A; --teal-dark:#0B4A43; --amber:#E2A73A; --coral:#D9564A;
+  --line:#DCE6E1; --mint:#E4F1EC;
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1613; --panel:#182420; --ink:#EAF2EF; --muted:#93A39D;
+    --line:#28362F; --mint:#16261F;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1613; --panel:#182420; --ink:#EAF2EF; --muted:#93A39D;
+  --line:#28362F; --mint:#16261F;
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'IBM Plex Sans', system-ui, sans-serif;
+}
+h1,h2,h3,.brand{font-family:'Space Grotesk', system-ui, sans-serif;}
+a{color:inherit;}
