@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Localizar producto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+<body data-page="buscar">
+<div class="app">
+  <nav class="side" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Localizar producto</h2>
+        <p>Escribe el nombre del medicamento y se ilumina su posición en el anaquel, como haría el LED físico.</p>
+      </header>
+      <div class="panel">
+        <input type="text" id="searchInput" placeholder="Ej. Paracetamol, Loratadina, Amoxicilina..." autocomplete="off">
+        <div id="foundCard" style="display:none" class="found-card"></div>
+        <div class="shelf-grid" id="shelfGrid"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/data.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/buscar.js"></script>
+<script>
+  const session = requireSession(['dueño','empleado']);
+  if(session){ renderNav(session); initPage(session); }
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Caducidades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+<body data-page="caducidades">
+<div class="app">
+  <nav class="side" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Control de caducidades</h2>
+        <p>Lotes ordenados por fecha de vencimiento. El color indica la urgencia, igual que el LED en el anaquel.</p>
+      </header>
+      <div id="cadAlert"></div>
+      <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+        <table>
+          <thead><tr><th>Estado</th><th>Producto</th><th>Lote</th><th>Factura</th><th>Caducidad</th><th>Días restantes</th><th>Cantidad</th></tr></thead>
+          <tbody id="cadBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/data.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/caducidades.js"></script>
+<script>
+  const session = requireSession(['dueño','empleado']);
+  if(session){ renderNav(session); initPage(session); }
+</script>
+</body>
+</html>

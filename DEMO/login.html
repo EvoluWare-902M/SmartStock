@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SmartStock — Iniciar sesión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+  <div id="loginScreen">
+    <div class="login-card">
+      <div class="brand">Smart<span>Stock</span></div>
+      <p class="sub">El rol se determina automáticamente según tu cuenta.</p>
+
+    <div class="field">
+      <label for="loginEmail">Correo</label>
+      <input type="email" id="loginEmail" placeholder="nombre@farmacia.mx">
+    </div>
+    <div class="field">
+      <label for="loginPass">Contraseña</label>
+      <input type="password" id="loginPass" placeholder="••••••••">
+    </div>
+
+    <div class="login-error" id="loginError"></div>
+    <button class="btn block" id="loginBtn">Iniciar sesión</button>
+
+    <p class="sub" style="margin:18px 0 6px;">¿Aún no tienes sucursal registrada? <a href="registro-sucursal.html" style="color:var(--teal); font-weight:600;">Regístrala aquí</a>.</p>
+
+    <div class="hint" style="margin-top:14px; line-height:1.7;">
+      <b>Cuentas de prueba</b><br>
+      Superadmin: admin@smartstock.mx / admin123<br>
+      Dueño: kaled@smartstock.mx / dueno123<br>
+      Empleado: esteban@smartstock.mx / empleado123
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/pages/login.js"></script>
+</body>
+</html>
