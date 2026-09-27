@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Salidas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+<body data-page="salidas">
+<div class="app">
+  <nav class="side" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Salida de medicamento</h2>
+        <p>Confirma la venta o retiro de un producto: el sistema valida el lote y la existencia antes de descontar.</p>
+      </header>
+
+      <div class="panel">
+        <div class="form-grid">
+          <div>
+            <label for="saProducto">Medicamento *</label>
+            <select id="saProducto"></select>
+          </div>
+          <div>
+            <label for="saLote">Lote *</label>
+            <select id="saLote"></select>
+          </div>
+          <div>
+            <label for="saCantidad">Cantidad a retirar *</label>
+            <input type="number" id="saCantidad" min="1" placeholder="Ej. 3">
+          </div>
+          <div>
+            <label for="saMotivo">Motivo *</label>
+            <select id="saMotivo"></select>
+          </div>
+          <div id="saRecetaWrap" style="display:none">
+            <label for="saReceta">Número de receta *</label>
+            <input type="text" id="saReceta" placeholder="Este medicamento requiere receta">
+          </div>
+          <div>
+            <label for="saCliente">Cliente (opcional)</label>
+            <input type="text" id="saCliente" placeholder="Nombre del cliente">
+          </div>
+        </div>
+
+        <div id="saInfo" class="found-card" style="display:none; margin-top:16px;"></div>
+
+        <div class="form-actions">
+          <button class="btn" id="saConfirmar">Confirmar salida</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/data.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/salidas.js"></script>
+<script>
+  const session = requireSession(['dueño','empleado']);
+  if(session){ renderNav(session); initPage(session); }
+</script>
+</body>
+</html>
