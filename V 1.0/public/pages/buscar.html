@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Localizar producto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="buscar">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Localizar producto</h2>
+        <p>Busca por nombre, sustancia activa o código: su posición se ilumina en el anaquel, como el LED físico.</p>
+      </header>
+      <div class="panel">
+        <input type="text" id="searchInput" placeholder="Ej. Paracetamol, loratadina, MED-003..." autocomplete="off" autofocus>
+        <div class="search-results" id="results"></div>
+        <div id="foundCard" style="display:none" class="found-card"></div>
+        <div class="shelf-wrap">
+          <div class="shelf-grid" id="shelfGrid"></div>
+          <div class="shelf-legend">
+            <span><span class="led-dot verde"></span>Lote vigente</span>
+            <span><span class="led-dot amarillo"></span>Lote próximo a vencer (≤45 días)</span>
+            <span><span class="led-dot rojo"></span>Lote urgente (≤15 días)</span>
+          </div>
+        </div>
+      </div>
+      <div class="panel table-wrap" id="lotesPanel" style="padding:0; overflow:hidden; display:none">
+        <table>
+          <thead><tr><th>Lote</th><th>Caducidad</th><th>Días</th><th>Cantidad</th><th>Estado</th></tr></thead>
+          <tbody id="lotesBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/buscar.js"></script>
+<script>
+  const session = requireSession(['dueno','empleado']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>
