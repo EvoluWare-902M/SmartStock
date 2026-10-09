@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Mi cuenta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="cuenta">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Mi cuenta</h2>
+        <p>Datos de tu sesión y cambio de contraseña.</p>
+      </header>
+      <div id="avisoTemporal"></div>
+      <div class="panel" id="datosCuenta"></div>
+      <div class="panel">
+        <div class="form-section-title" style="margin-top:0">Cambiar contraseña</div>
+        <div class="form-grid">
+          <div class="full">
+            <label for="cuActual">Contraseña actual *</label>
+            <input type="password" id="cuActual" autocomplete="current-password">
+          </div>
+          <div>
+            <label for="cuNueva">Nueva contraseña * <span style="font-weight:400">(mín. 6 caracteres)</span></label>
+            <input type="password" id="cuNueva" autocomplete="new-password">
+          </div>
+          <div>
+            <label for="cuConfirma">Confirmar nueva contraseña *</label>
+            <input type="password" id="cuConfirma" autocomplete="new-password">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn" id="cuGuardar">Actualizar contraseña</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/cuenta.js"></script>
+<script>
+  const session = requireSession();
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>

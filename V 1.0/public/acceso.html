@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Acceso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/acceso.css">
+</head>
+<body>
+
+<a class="acc-volver" href="index.html">← Volver al inicio</a>
+
+<main class="acc" id="acc">
+
+  <!-- Formulario de REGISTRO (mitad izquierda) -->
+  <section class="acc-form" id="formRegistro" aria-labelledby="tituloRegistro">
+    <h1 id="tituloRegistro">Registra tu farmacia</h1>
+    <p class="acc-sub">Empieza con lo básico. En el siguiente paso completas los datos del negocio y eliges tu plan.</p>
+    <div class="acc-grid una">
+      <div><label for="rsNombre">Nombre del negocio</label><input type="text" id="rsNombre" placeholder="Ej. Farmacia La Esperanza" autocomplete="organization" maxlength="120"></div>
+      <div><label for="rsDueno">Tu nombre</label><input type="text" id="rsDueno" placeholder="Nombre(s) del responsable" autocomplete="given-name" maxlength="60"></div>
+      <div><label for="rsCorreo">Correo</label><input type="email" id="rsCorreo" placeholder="nombre@negocio.mx" autocomplete="email" maxlength="120"></div>
+    </div>
+    <p class="acc-error" id="rsError" role="alert"></p>
+    <button class="acc-btn" id="rsGuardar">Continuar →</button>
+    <p class="acc-pasos">Son 5 pasos cortos · El plan Gratuito se activa al instante</p>
+    <p class="acc-alt">¿Ya tienes cuenta? <button class="acc-link" data-modo="login">Inicia sesión</button></p>
+  </section>
+
+  <!-- Formulario de INICIO DE SESIÓN (mitad derecha) -->
+  <section class="acc-form" id="formLogin" aria-labelledby="tituloLogin">
+    <h1 id="tituloLogin">¡Bienvenido de nuevo!</h1>
+    <p class="acc-sub">El rol se determina automáticamente según tu cuenta.</p>
+    <div class="acc-grid una">
+      <div><label for="loginEmail">Correo</label><input type="email" id="loginEmail" placeholder="nombre@farmacia.mx" autocomplete="username"></div>
+      <div><label for="loginPass">Contraseña</label><input type="password" id="loginPass" placeholder="Tu contraseña" autocomplete="current-password"></div>
+    </div>
+    <label class="acc-check"><input type="checkbox" id="loginRecordar"> Mantener la sesión en este equipo</label>
+    <p class="acc-error" id="loginError" role="alert"></p>
+    <button class="acc-btn" id="loginBtn">Iniciar sesión</button>
+    <p class="acc-alt">¿Aún no tienes cuenta? <button class="acc-link" data-modo="registro">Registra tu farmacia</button></p>
+    <details class="acc-demo">
+      <summary>Cuentas de prueba</summary>
+      <button data-demo="admin@smartstock.mx|admin123"><b>Superadministrador</b> admin@smartstock.mx</button>
+      <button data-demo="kaled@smartstock.mx|dueno123"><b>Gerente</b> kaled@smartstock.mx</button>
+      <button data-demo="esteban@smartstock.mx|empleado123"><b>Empleado</b> esteban@smartstock.mx</button>
+    </details>
+  </section>
+
+  <!-- Panel de color: se desliza de un lado al otro -->
+  <aside class="acc-panel" aria-hidden="true">
+    <span class="deco d1"></span><span class="deco d2"></span><span class="deco d3"></span><span class="deco d4"></span><span class="deco puntos p1"></span><span class="deco puntos p2"></span><span class="deco equis">✕</span>
+    <div class="acc-marca">
+      <img src="img/isotipo-blanco.png" alt="">
+      <b>Smart<span>Stock</span></b>
+    </div>
+    <div class="acc-mensajes">
+      <div class="acc-msg m-login">
+        <p>Acceso para tu equipo</p>
+        <h2>Tu inventario,<br><span>siempre a la mano.</span></h2>
+      </div>
+      <div class="acc-msg m-registro">
+        <p>Empieza en un par de minutos</p>
+        <h2>Tu farmacia,<br><span>localizada y al día.</span></h2>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Botón central: cambia entre iniciar sesión y registrarse -->
+  <button class="acc-cambio" id="accCambio" aria-label="Cambiar a crear una cuenta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    <span class="acc-cambio-txt" id="accCambioTxt">Crear cuenta</span>
+  </button>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/pages/acceso.js"></script>
+</body>
+</html>

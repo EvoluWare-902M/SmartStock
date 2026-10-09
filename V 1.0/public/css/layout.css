@@ -1,0 +1,60 @@
+/* ===== layout.css : estructura de la app (sidebar + contenido) ===== */
+.app{display:flex; min-height:100vh;}
+
+nav.side{
+  width:220px; flex-shrink:0; background:var(--primario-oscuro); color:#F0F7FF;
+  padding:28px 16px; display:flex; flex-direction:column; gap:6px;
+}
+.brand{font-size:1.25rem; font-weight:700; margin:0 8px 26px; letter-spacing:.2px;}
+.brand span{color:var(--acento);}
+nav.side a.nav-btn{
+  text-decoration:none; cursor:pointer; padding:11px 14px; border-radius:9px;
+  font-size:.95rem; color:#D3E7F8; display:flex; align-items:center; gap:10px;
+}
+nav.side a.nav-btn:hover{background:rgba(255,255,255,.06);}
+nav.side a.nav-btn.active{background:#16489F; color:#fff; font-weight:600;}
+nav.side .group-label{font-size:.72rem; color:#84A4CC; margin:14px 8px 4px; letter-spacing:.2px;}
+nav.side .group-label:first-of-type{margin-top:2px;}
+
+.user-footer{margin-top:auto; padding:12px; border-top:1px solid rgba(255,255,255,.1); font-size:.82rem;}
+.user-footer .who{color:#F0F7FF; font-weight:600; margin-bottom:2px;}
+.user-footer .role{color:#8DAED6; margin-bottom:10px;}
+.user-footer button{all:unset; cursor:pointer; font-size:.82rem; color:#D3E7F8; padding:6px 0;}
+.user-footer button:hover{color:#fff;}
+
+main{flex:1; padding:32px 40px; max-width:1000px;}
+header.view-head{margin-bottom:24px;}
+header.view-head h2{margin:0 0 4px; font-size:1.5rem;}
+header.view-head p{margin:0; color:var(--muted); font-size:.92rem;}
+
+@media (max-width: 720px){
+  .app{flex-direction:column;}
+  nav.side{width:100%; flex-direction:row; flex-wrap:wrap; align-items:center;}
+  nav.side .group-label, nav.side .user-footer{display:none;}
+  main{padding:20px;}
+}
+
+/* ===== Agregados versión funcional ===== */
+.nav-top{display:flex; align-items:center; justify-content:space-between;}
+.nav-top .brand{margin-bottom:26px;}
+.nav-toggle{display:none; background:none; border:1px solid rgba(255,255,255,.25); color:#fff; border-radius:8px; font-size:1.1rem; padding:4px 10px; cursor:pointer;}
+.nav-links{display:flex; flex-direction:column; gap:6px; flex:1;}
+.nav-badge{margin-left:auto; background:var(--coral); color:#fff; font-size:.7rem; font-weight:700; border-radius:20px; padding:1px 7px;}
+.user-footer a{color:#D3E7F8; font-size:.82rem; text-decoration:none;}
+.user-footer a:hover{color:#fff;}
+nav.side{position:sticky; top:0; height:100vh; overflow-y:auto;}
+
+@media (max-width: 720px){
+  nav.side{position:static; height:auto; flex-direction:column; flex-wrap:nowrap; align-items:stretch; padding:14px 16px;}
+  .nav-top .brand{margin:0 4px;}
+  .nav-toggle{display:block;}
+  .nav-links{display:none;}
+  nav.side.open .nav-links{display:flex; margin-top:12px;}
+  nav.side.open .group-label, nav.side.open .user-footer{display:block;}
+  main{padding:20px 16px;}
+}
+nav.side{padding:22px 14px; gap:3px;}
+.nav-links{gap:3px;}
+nav.side a.nav-btn{padding:8px 12px; font-size:.9rem;}
+nav.side .group-label{margin:10px 8px 2px;}
+.nav-top .brand{margin-bottom:16px;}

@@ -1,0 +1,34 @@
+/* ===== base.css : reset, variables y tipografía =====
+   Paleta SmartStock
+   - Azul celeste (marca):  #0CB7F2 · #53D4FF · #8FE3FF · #BCEEFF · #DEF7FF
+   - Azul marino (logo):    #103A8C, con dos tonos más oscuros para barras y fondos
+   - Ámbar: solo para el LED y los avisos de "por vencer"
+   - Coral: errores y stock bajo
+*/
+:root{
+  --cielo:#0CB7F2; --cielo-2:#53D4FF; --cielo-3:#8FE3FF; --cielo-4:#BCEEFF; --cielo-5:#DEF7FF;
+  --primario:#103A8C; --primario-oscuro:#0A2A6B; --noche:#071B47;
+  --acento:var(--cielo); --foco:#0A8FC2;
+  --ambar:#F5A524; --ambar-texto:#A86400; --coral:#D9564A;
+  --bg:#F3FAFE; --panel:#FFFFFF; --ink:#0B1D3A; --muted:#4A6079;
+  --line:#C9E4F2; --suave:#DEF7FF;
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A1424; --panel:#111E33; --ink:#E8F2FB; --muted:#94A9BF;
+    --line:#22344D; --suave:#10263F; --primario:#2F6FD6; --ambar-texto:#F5A524;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A1424; --panel:#111E33; --ink:#E8F2FB; --muted:#94A9BF;
+  --line:#22344D; --suave:#10263F; --primario:#2F6FD6; --ambar-texto:#F5A524;
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'IBM Plex Sans', system-ui, sans-serif;
+}
+h1,h2,h3,.brand{font-family:'Space Grotesk', system-ui, sans-serif;}
+a{color:inherit;}
