@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Existencias y alertas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="inventario">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Inventario y alertas</h2>
+        <p>Existencias actuales (calculadas a partir de los lotes vigentes) con el mínimo configurado por producto.</p>
+      </header>
+      <div class="filters">
+        <select id="invCategoria"></select>
+        <select id="invEstado">
+          <option value="">Todos los estados</option>
+          <option value="bajo">Solo stock bajo</option>
+        </select>
+      </div>
+      <div id="alertsArea"></div>
+      <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+        <table>
+          <thead><tr><th>Producto</th><th>Categoría</th><th>Anaquel</th><th>Existencia</th><th>Mínimo</th><th>Próx. caducidad</th><th>Estado</th></tr></thead>
+          <tbody id="invBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/inventario.js"></script>
+<script>
+  const session = requireSession(['dueno','empleado']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>

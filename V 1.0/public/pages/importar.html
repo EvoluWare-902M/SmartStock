@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Importar medicamentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="importar">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Importar medicamentos desde Excel</h2>
+        <p>Sube tu lista como la tengas. SmartStock reconoce las columnas, completa lo que falte y te deja revisar antes de guardar. <span class="ia-tag">IA</span></p>
+      </header>
+      <div class="panel" id="imSubir">
+        <div class="im-zona" id="imZona">
+          <b>Arrastra aquí tu archivo .xlsx</b>
+          <span>o</span>
+          <label class="btn" for="imArchivo" style="margin:0; color:#fff">Elegir archivo</label>
+          <input type="file" id="imArchivo" accept=".xlsx" hidden>
+          <small>Solo es obligatoria la columna con el nombre. Hasta 300 filas por archivo.</small>
+        </div>
+        <div class="form-actions"><button class="btn secondary" id="imPlantilla">Descargar plantilla de ejemplo</button></div>
+        <div class="explica" style="margin:16px 0 0">
+          <b>Qué hace la IA con tu archivo:</b> empareja los encabezados aunque se llamen distinto ("Descripción", "Existencia", "Vence"); deduce sustancia, categoría, presentación y si lleva receta a partir del nombre; propone una casilla libre del anaquel; y te avisa de duplicados y de datos que no cuadran. Nada se guarda hasta que lo confirmas.
+        </div>
+      </div>
+      <div id="imRevision" hidden>
+        <div class="stat-grid" id="imStats"></div>
+        <div id="imColumnas"></div>
+        <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+          <table class="im-tabla">
+            <thead><tr><th style="width:34px"></th><th>Fila</th><th>Medicamento</th><th>Categoría</th><th>Presentación</th><th>Receta</th><th>Casilla</th><th>Existencia</th><th>Precio</th><th>Observaciones</th></tr></thead>
+            <tbody id="imFilas"></tbody>
+          </table>
+        </div>
+        <div class="form-actions">
+          <button class="btn" id="imConfirmar">Importar</button>
+          <button class="btn secondary" id="imOtro">Subir otro archivo</button>
+          <span class="hint" style="margin:0">Los valores marcados con ✨ los propuso la IA.</span>
+        </div>
+      </div>
+      <div id="imResultado"></div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/importar.js"></script>
+<script>
+  const session = requireSession(['dueno']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>

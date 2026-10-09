@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Medicamentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="registro">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2 id="rmTitulo">Registrar medicamento</h2>
+        <p>Alta de un nuevo medicamento en el catálogo, junto con su primer lote y su ubicación física.</p>
+      </header>
+      
+      <div class="panel">
+        <div class="form-section-title">Información general</div>
+        <div class="form-grid">
+          <div>
+            <label for="rmNombre">Nombre del medicamento *</label>
+            <input type="text" id="rmNombre" placeholder="Ej. Naproxeno 500mg tabletas">
+            <div class="hint">Escribe el nombre completo y la IA propone el resto.</div>
+          </div>
+          <div>
+            <label for="rmCodigo">Código / SKU</label>
+            <input type="text" id="rmCodigo" placeholder="Se genera automáticamente si se deja vacío">
+          </div>
+          <div>
+            <label for="rmSustancia">Sustancia activa</label>
+            <input type="text" id="rmSustancia" placeholder="Ej. Naproxeno">
+          </div>
+          <div>
+            <label for="rmLaboratorio">Laboratorio / fabricante</label>
+            <input type="text" id="rmLaboratorio" placeholder="Ej. Genfar">
+          </div>
+          <div>
+            <label for="rmCategoria">Categoría *</label>
+            <select id="rmCategoria"></select>
+          </div>
+          <div>
+            <label for="rmPresentacion">Presentación *</label>
+            <select id="rmPresentacion"></select>
+          </div>
+          <div>
+            <label for="rmConcentracion">Concentración / dosis</label>
+            <input type="text" id="rmConcentracion" placeholder="Ej. 500mg">
+          </div>
+          <div class="checkbox-row" style="align-self:end; padding-bottom:10px;">
+            <input type="checkbox" id="rmReceta">
+            <label for="rmReceta" style="margin:0;">Requiere receta médica</label>
+          </div>
+          <div>
+            <label for="rmBarras">Código de barras</label>
+            <input type="text" id="rmBarras" inputmode="numeric" maxlength="14" placeholder="Escanéalo o escríbelo (8 a 14 dígitos)">
+          </div>
+          <div>
+            <label for="rmProveedor">Proveedor habitual</label>
+            <select id="rmProveedor"></select>
+          </div>
+          <div class="full" id="rmIA"></div>
+        </div>
+      
+        <div id="rmLoteSeccion">
+          <div class="form-section-title">Lote inicial</div>
+          <div class="form-grid">
+            <div>
+              <label for="rmLote">Lote *</label>
+              <input type="text" id="rmLote" placeholder="Ej. L-2600">
+            </div>
+            <div>
+              <label for="rmCaducidad">Fecha de caducidad *</label>
+              <input type="date" id="rmCaducidad">
+            </div>
+            <div>
+              <label for="rmCantidad">Cantidad inicial *</label>
+              <input type="number" id="rmCantidad" min="1" placeholder="Ej. 20">
+            </div>
+            <div>
+              <label for="rmCosto">Costo unitario (compra)</label>
+              <input type="number" id="rmCosto" min="0" step="0.01" placeholder="Ej. 18.50">
+            </div>
+          </div>
+        </div>
+      
+        <div class="form-section-title">Ubicación y control de stock</div>
+        <div class="form-grid">
+          <div>
+            <label for="rmUbicacion">Ubicación (anaquel) *</label>
+            <select id="rmUbicacion"></select>
+          </div>
+          <div>
+            <label for="rmMinimo">Stock mínimo *</label>
+            <input type="number" id="rmMinimo" min="0" placeholder="Ej. 10">
+            <div class="hint">Al llegar a esta cantidad se genera una alerta de reabastecimiento.</div>
+          </div>
+          <div>
+            <label for="rmPrecio">Precio de venta</label>
+            <input type="number" id="rmPrecio" min="0" step="0.01" placeholder="Ej. 35.00">
+          </div>
+        </div>
+      
+        <div class="form-actions">
+          <button class="btn" id="rmGuardar">Guardar medicamento</button>
+          <button class="btn secondary" id="rmLimpiar">Limpiar</button>
+        </div>
+      </div>
+      
+      <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+        <table>
+          <thead><tr>
+            <th>Código</th><th>Producto</th><th>Categoría</th><th>Presentación</th>
+            <th>Próx. caducidad</th><th>Ubicación</th><th>Stock</th><th>Mínimo</th><th>Receta</th><th>Acciones</th>
+          </tr></thead>
+          <tbody id="rmBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/registro.js"></script>
+<script>
+  const session = requireSession(['dueno']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>
