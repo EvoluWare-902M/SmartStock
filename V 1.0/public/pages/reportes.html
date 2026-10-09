@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Reportes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="reportes">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Reportes de inventario</h2>
+        <p>Indicadores de la sucursal y exportación de reportes en PDF o Excel.</p>
+      </header>
+      
+      <div class="stat-grid" id="reportStats"></div>
+      
+      <div class="chart-grid">
+        <div class="chart-wrap"><canvas id="ventasChart"></canvas></div>
+        <div class="chart-wrap"><canvas id="topChart"></canvas></div>
+      </div>
+      
+      <div class="panel">
+        <div class="form-grid">
+          <div>
+            <label for="repTipo">Tipo de reporte</label>
+            <select id="repTipo">
+              <option value="general">General (existencias, caducidades y movimientos)</option>
+              <option value="existencias">Existencias y límites de stock</option>
+              <option value="caducidades">Caducidades</option>
+              <option value="movimientos">Movimientos</option>
+              <option value="compras">Orden de compra sugerida</option>
+            </select>
+          </div>
+          <div></div>
+          <div>
+            <label for="repDesde">Movimientos desde</label>
+            <input type="date" id="repDesde">
+          </div>
+          <div>
+            <label for="repHasta">Movimientos hasta</label>
+            <input type="date" id="repHasta">
+          </div>
+        </div>
+        <div class="form-actions" style="flex-wrap:wrap">
+          <button class="btn" id="genReporte">Generar vista previa</button>
+          <button class="btn secondary" id="descPdf">Descargar PDF</button>
+          <button class="btn secondary" id="descXlsx">Descargar Excel</button>
+        </div>
+      </div>
+      
+      <div id="preview"></div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../vendor/chart.umd.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/reportes.js"></script>
+<script>
+  const session = requireSession(['dueno']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>
