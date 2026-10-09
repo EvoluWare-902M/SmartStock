@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Compras</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="compras">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Compras</h2>
+        <p>Órdenes a proveedores, de la sugerencia a la recepción, y lo que tus clientes piden y no encuentran.</p>
+      </header>
+      <div class="tabs" role="tablist">
+        <button role="tab" data-tab="ordenes" class="activa">Órdenes de compra</button>
+        <button role="tab" data-tab="proveedores">Proveedores</button>
+        <button role="tab" data-tab="demanda">Lo que piden y no hay</button>
+      </div>
+
+      <section id="tab-ordenes" class="tab-panel">
+        <div class="toolbar">
+          <p class="hint" style="margin:0; max-width:520px">La IA arma un borrador por proveedor con lo que hace falta según la demanda estimada. Tú revisas las cantidades y decides si se envía.</p>
+          <div class="row-actions">
+            <button class="btn" id="coSugerir">✨ Generar órdenes con IA</button>
+            <a class="btn secondary" href="orden.html?nueva=1">Nueva orden</a>
+          </div>
+        </div>
+        <div id="coAviso"></div>
+        <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+          <table>
+            <thead><tr><th>Folio</th><th>Proveedor</th><th>Estado</th><th>Productos</th><th>Total estimado</th><th>Fecha</th><th></th></tr></thead>
+            <tbody id="coOrdenes"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="tab-proveedores" class="tab-panel" hidden>
+        <div class="panel">
+          <div class="form-section-title" id="prTitulo">Nuevo proveedor</div>
+          <div class="form-grid">
+            <div><label for="prNombre">Nombre *</label><input type="text" id="prNombre" placeholder="Ej. Nadro"></div>
+            <div><label for="prContacto">Persona de contacto</label><input type="text" id="prContacto" placeholder="Ej. Jorge Ibarra"></div>
+            <div><label for="prTelefono">Teléfono</label><input type="tel" id="prTelefono" placeholder="55 0000 0000"></div>
+            <div><label for="prCorreo">Correo</label><input type="email" id="prCorreo" placeholder="pedidos@proveedor.mx"></div>
+            <div><label for="prDias">Días que tarda en surtir *</label><input type="number" id="prDias" min="1" max="60" value="3">
+              <div class="hint">Con este dato la IA calcula cuánto stock mínimo necesitas de sus productos.</div></div>
+            <div><label for="prNotas">Notas</label><input type="text" id="prNotas" placeholder="Ej. Pedido mínimo $2,000"></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn" id="prGuardar">Guardar proveedor</button>
+            <button class="btn secondary" id="prCancelar" hidden>Cancelar edición</button>
+          </div>
+        </div>
+        <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+          <table>
+            <thead><tr><th>Proveedor</th><th>Contacto</th><th>Productos</th><th>Entrega</th><th>Surtido completo</th><th></th></tr></thead>
+            <tbody id="prBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="tab-demanda" class="tab-panel" hidden>
+        <p class="explica">Cada vez que alguien en el mostrador anota "me pidieron esto y no había", queda aquí. La IA junta las solicitudes que hablan de lo mismo aunque estén escritas distinto o con faltas, para que veas qué demanda estás dejando ir. <span class="ia-tag">IA</span></p>
+        <div class="card-list" id="coDemanda"></div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/compras.js"></script>
+<script>
+  const session = requireSession(['dueno']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>

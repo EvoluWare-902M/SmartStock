@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Orden de compra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="orden">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <a class="volver" href="compras.html">← Órdenes de compra</a>
+      <div class="ficha-head">
+        <header class="view-head" style="margin-bottom:14px">
+          <h2 id="orTitulo">Orden de compra</h2>
+          <p id="orSub"></p>
+        </header>
+        <div class="row-actions" id="orAcciones"></div>
+      </div>
+      <div id="orAviso"></div>
+      <div class="panel">
+        <div class="form-grid" id="orCabecera"></div>
+      </div>
+      <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+        <table>
+          <thead id="orHead"></thead>
+          <tbody id="orBody"></tbody>
+        </table>
+        <div class="pv-total" style="padding:14px 16px; margin:0"><span>Total estimado</span><b id="orTotal">$0.00</b></div>
+      </div>
+      <div class="panel" id="orAgregarPanel" hidden>
+        <div class="filters" style="margin:0">
+          <select id="orProducto" style="flex:1"></select>
+          <input type="number" id="orCantidad" min="1" placeholder="Cantidad" style="width:120px; min-width:0">
+          <button class="btn secondary" id="orAgregar">Agregar a la orden</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/orden.js"></script>
+<script>
+  const session = requireSession(['dueno']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>
