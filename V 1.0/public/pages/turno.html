@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Mi turno</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="turno">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2 id="tuTitulo">Mi turno</h2>
+        <p id="tuFecha">Lo que llevas hoy y lo que toca hacer, ordenado por urgencia.</p>
+      </header>
+      <div class="hallazgo" id="tuResumen" style="margin-bottom:18px"></div>
+      <div class="stat-grid" id="tuStats"></div>
+      <div class="panel">
+        <div class="pv-tit">Pendientes del turno <span class="ia-tag">IA</span></div>
+        <p class="hint" style="margin:0 0 14px">Nadie los captura: el sistema los genera con el estado del inventario y los ordena por urgencia.</p>
+        <div class="card-list" id="tuTareas"></div>
+      </div>
+      <div class="panel table-wrap" id="tuEquipoPanel" style="padding:0; overflow:hidden;" hidden>
+        <div class="panel-tit">Ventas de hoy por persona</div>
+        <table>
+          <thead><tr><th>Quién</th><th>Tickets</th><th>Piezas</th><th>Importe</th></tr></thead>
+          <tbody id="tuEquipo"></tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <div class="pv-tit">¿Te pidieron algo que no había?</div>
+        <p class="hint" style="margin:0 0 12px">Anótalo como lo pidió el cliente. Sirve para que el gerente sepa qué falta en el catálogo.</p>
+        <form class="filters" id="tuFaltante" style="margin:0">
+          <input type="text" id="tuTexto" placeholder="Ej. metformina 850" maxlength="120" style="flex:1; min-width:200px">
+          <input type="number" id="tuCant" min="1" max="99" value="1" style="width:90px; min-width:0" aria-label="Piezas que pidió">
+          <button class="btn">Anotar</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/turno.js"></script>
+<script>
+  const session = requireSession(['dueno', 'empleado']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>

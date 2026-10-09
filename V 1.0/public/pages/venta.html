@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Punto de venta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="venta">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Punto de venta</h2>
+        <p>Arma el ticket con varios medicamentos. El sistema descuenta primero el lote que caduca antes y te dice de qué casilla tomar cada uno.</p>
+      </header>
+      <div id="pvRecibo"></div>
+      <div class="pv" id="pvCaja">
+        <div class="panel pv-busca">
+          <label for="pvBuscar">Buscar medicamento o escanear código de barras</label>
+          <input type="text" id="pvBuscar" placeholder="Ej. paracetamol, MED-003 o pasa el lector…" autocomplete="off" autofocus>
+          <div class="hint">Enter agrega el primer resultado. El lector de código de barras funciona como teclado: solo apunta y dispara.</div>
+          <div class="search-results" id="pvResultados"></div>
+          <div id="pvAlternativas"></div>
+          <div class="pv-nohay">
+            <span>¿Te pidieron algo que no hay?</span>
+            <button class="btn secondary sm" id="pvNoHay">Anotarlo</button>
+          </div>
+        </div>
+        <div class="panel pv-ticket">
+          <div class="pv-tit">Ticket <span id="pvCuenta" class="muted"></span></div>
+          <div id="pvLineas"></div>
+          <div id="pvSugerencias"></div>
+          <div id="pvRecetaWrap" hidden>
+            <label for="pvReceta">Número de receta *</label>
+            <input type="text" id="pvReceta" placeholder="Hay medicamentos que se venden solo con receta">
+          </div>
+          <div>
+            <label for="pvCliente">Cliente (opcional)</label>
+            <input type="text" id="pvCliente" placeholder="Nombre del cliente">
+          </div>
+          <div class="pv-total"><span>Total</span><b id="pvTotal">$0.00</b></div>
+          <button class="btn block" id="pvCobrar" disabled>Cobrar</button>
+        </div>
+      </div>
+      <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+        <div class="panel-tit" id="pvHoyTit">Ventas de hoy</div>
+        <table>
+          <thead><tr><th>Folio</th><th>Hora</th><th>Productos</th><th>Piezas</th><th>Total</th><th>Atendió</th><th></th></tr></thead>
+          <tbody id="pvHoy"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/venta.js"></script>
+<script>
+  const session = requireSession(['dueno', 'empleado']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>
