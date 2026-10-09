@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Empleados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="usuarios">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Empleados</h2>
+        <p>Alta y administración del personal de tu sucursal. Cada rol solo tiene acceso a las pantallas que le corresponden.</p>
+      </header>
+      
+      <div class="panel">
+        <div class="form-grid">
+          <div>
+            <label for="usNombre">Nombre completo *</label>
+            <input type="text" id="usNombre" placeholder="Nombre y apellidos">
+          </div>
+          <div>
+            <label for="usCorreo">Correo *</label>
+            <input type="email" id="usCorreo" placeholder="nombre@farmacia.mx">
+          </div>
+          <div>
+            <label for="usTelefono">Teléfono</label>
+            <input type="tel" id="usTelefono" placeholder="Ej. 55 1234 5678">
+          </div>
+          <div>
+            <label for="usPass">Contraseña temporal * <span style="font-weight:400">(mín. 6 caracteres)</span></label>
+            <input type="password" id="usPass" placeholder="Se pedirá cambiarla al primer acceso" autocomplete="new-password">
+          </div>
+          <div>
+            <label for="usRol">Rol *</label>
+            <select id="usRol">
+              <option value="empleado">Empleado — localizar, registrar salidas y consultar</option>
+              <option value="dueno">Gerente — acceso completo a la sucursal</option>
+            </select>
+          </div>
+        </div>
+        <div class="hint" id="usLimite" style="margin-top:8px;"></div>
+        <div class="form-actions">
+          <button class="btn" id="usGuardar">Crear usuario</button>
+        </div>
+      </div>
+      
+      <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+        <table>
+          <thead><tr><th>Nombre</th><th>Correo</th><th>Teléfono</th><th>Rol</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody id="usBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/usuarios.js"></script>
+<script>
+  const session = requireSession(['dueno']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>

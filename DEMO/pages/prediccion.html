@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Predicción de demanda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+<body data-page="prediccion">
+<div class="app">
+  <nav class="side" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Predicción de demanda</h2>
+        <p>Histórico simulado de ventas mensuales por categoría, para anticipar reabastecimiento.</p>
+      </header>
+      <div class="panel">
+        <label for="catSelect" style="display:inline; font-size:.85rem; color:var(--muted);">Categoría:</label>
+        <select id="catSelect" style="width:auto; display:inline-block; margin-left:8px;"></select>
+        <div class="chart-wrap" style="margin-top:16px;">
+          <canvas id="demandChart"></canvas>
+        </div>
+        <div class="insight" id="insightText"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/prediccion.js"></script>
+<script>
+  const session = requireSession(['dueño']);
+  if(session){ renderNav(session); initPage(session); }
+</script>
+</body>
+</html>

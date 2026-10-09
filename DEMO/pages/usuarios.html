@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Empleados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+<body data-page="usuarios">
+<div class="app">
+  <nav class="side" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Empleados</h2>
+        <p>Alta de personal de tu sucursal. Los empleados solo tienen acceso a las pantallas operativas.</p>
+      </header>
+
+      <div class="panel">
+        <div class="form-grid">
+          <div>
+            <label for="usNombre">Nombre completo *</label>
+            <input type="text" id="usNombre" placeholder="Nombre y apellidos">
+          </div>
+          <div>
+            <label for="usCorreo">Correo *</label>
+            <input type="email" id="usCorreo" placeholder="nombre@farmacia.mx">
+          </div>
+          <div>
+            <label for="usTelefono">Teléfono</label>
+            <input type="tel" id="usTelefono" placeholder="Ej. 55 1234 5678">
+          </div>
+          <div>
+            <label for="usPass">Contraseña temporal *</label>
+            <input type="password" id="usPass" placeholder="Se pedirá cambiarla al primer acceso">
+          </div>
+        </div>
+        <div class="hint" style="margin-top:4px;">El rol se asigna automáticamente como Empleado, dentro de tu sucursal.</div>
+        <div class="form-actions">
+          <button class="btn" id="usGuardar">Crear empleado</button>
+        </div>
+      </div>
+
+      <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+        <table>
+          <thead><tr><th>Nombre</th><th>Correo</th><th>Teléfono</th><th>Rol</th><th>Estado</th></tr></thead>
+          <tbody id="usBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/data.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/usuarios.js"></script>
+<script>
+  const session = requireSession(['dueño']);
+  if(session){ renderNav(session); initPage(session); }
+</script>
+</body>
+</html>

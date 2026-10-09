@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Reportes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+<body data-page="reportes">
+<div class="app">
+  <nav class="side" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Reportes de inventario</h2>
+        <p>Resumen general de existencias, alertas y caducidades para exportar.</p>
+      </header>
+
+      <div class="stat-grid" id="reportStats"></div>
+
+      <div class="panel">
+        <div class="form-grid">
+          <div>
+            <label for="repTipo">Tipo de reporte</label>
+            <select id="repTipo">
+              <option value="general">General</option>
+              <option value="existencias">Existencias</option>
+              <option value="caducidades">Caducidades</option>
+              <option value="movimientos">Movimientos</option>
+            </select>
+          </div>
+          <div></div>
+          <div>
+            <label for="repDesde">Desde (opcional)</label>
+            <input type="date" id="repDesde">
+          </div>
+          <div>
+            <label for="repHasta">Hasta (opcional)</label>
+            <input type="date" id="repHasta">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn" id="genReporte">Generar reporte</button>
+          <button class="btn secondary" id="descReporte">Descargar PDF</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/data.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/reportes.js"></script>
+<script>
+  const session = requireSession(['dueño']);
+  if(session){ renderNav(session); initPage(session); }
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Mi sucursal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="mi-sucursal">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Mi sucursal</h2>
+        <p>Datos de tu negocio y plan contratado en SmartStock.</p>
+      </header>
+      
+      <div class="panel" id="estadoPanel"></div>
+      
+      <div class="panel">
+        <div class="form-section-title" style="margin-top:0;">Datos del negocio</div>
+        <div class="form-grid">
+          <div class="full">
+            <label for="msNombre">Nombre del negocio</label>
+            <input type="text" id="msNombre">
+          </div>
+          <div class="full">
+            <label for="msDireccion">Dirección</label>
+            <input type="text" id="msDireccion">
+          </div>
+          <div>
+            <label for="msTelefono">Teléfono</label>
+            <input type="tel" id="msTelefono">
+          </div>
+          <div>
+            <label for="msCorreo">Correo de contacto</label>
+            <input type="email" id="msCorreo" disabled>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn" id="msGuardar">Guardar cambios</button>
+        </div>
+      </div>
+      
+      <div class="panel">
+        <div class="form-section-title" style="margin-top:0;">Plan actual</div>
+        <p id="msPlanTxt" style="margin:0 0 14px; color:var(--muted); font-size:.9rem;"></p>
+        <div class="filters" style="margin:0">
+          <select id="msPlanNuevo" aria-label="Nuevo plan"></select>
+          <button class="btn secondary" id="msCambiarPlan">Solicitar cambio de plan</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/mi-sucursal.js"></script>
+<script>
+  const session = requireSession(['dueno']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>
