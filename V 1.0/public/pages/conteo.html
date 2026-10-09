@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Conteo físico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="conteo">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <div id="cnLista">
+        <header class="view-head">
+          <h2>Conteo físico</h2>
+          <p>Cuenta un poco cada día en lugar de cerrar la farmacia para un inventario completo. Las diferencias se ajustan cuando el gerente las revisa.</p>
+        </header>
+        <div class="panel" id="cnNuevo" hidden>
+          <div class="pv-tit">Qué conviene contar hoy <span class="ia-tag">IA</span></div>
+          <p class="hint" style="margin:0 0 12px">El modelo da prioridad a lo que más ingreso genera, lo que se vende con receta, lo que tuvo movimientos inusuales y lo que lleva más tiempo sin contarse.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th style="width:34px"></th><th>Medicamento</th><th>Casilla</th><th>Clase</th><th>Por qué</th><th>Último conteo</th></tr></thead>
+              <tbody id="cnSugeridos"></tbody>
+            </table>
+          </div>
+          <div class="filters" style="margin:14px 0 0">
+            <select id="cnOtro" aria-label="Agregar otro medicamento"></select>
+            <select id="cnAsignar" aria-label="Quién lo cuenta"></select>
+            <button class="btn" id="cnAbrir">Abrir conteo</button>
+          </div>
+        </div>
+        <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+          <table>
+            <thead><tr><th>Folio</th><th>Estado</th><th>Asignado a</th><th>Avance</th><th>Diferencias</th><th>Fecha</th><th></th></tr></thead>
+            <tbody id="cnBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div id="cnDetalle" hidden>
+        <a class="volver" href="conteo.html">← Conteos</a>
+        <div class="ficha-head">
+          <header class="view-head" style="margin-bottom:14px">
+            <h2 id="cnTitulo"></h2>
+            <p id="cnSub"></p>
+          </header>
+          <div class="row-actions" id="cnAcciones"></div>
+        </div>
+        <div id="cnAviso"></div>
+        <div class="stat-grid" id="cnStats"></div>
+        <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+          <table>
+            <thead id="cnHead"></thead>
+            <tbody id="cnPartidas"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/conteo.js"></script>
+<script>
+  const session = requireSession(['dueno', 'empleado']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>
