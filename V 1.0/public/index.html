@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Gestión inteligente de inventario para farmacias</title>
+<meta name="description" content="SmartStock localiza cada medicamento en el anaquel, avisa antes de que se agote o caduque y predice qué comprar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+<!-- ===== Barra de navegación ===== -->
+<header class="lnav">
+  <a class="lnav-brand" href="#inicio" data-ir="0">
+    <img src="img/isotipo-blanco.png" alt="">
+    <b>Smart<span>Stock</span></b>
+  </a>
+  <nav class="lnav-links" aria-label="Secciones">
+    <a href="#inicio" data-ir="0">Inicio</a>
+    <a href="#que-es" data-ir="1">Qué es</a>
+    <a href="#funciones" data-ir="2">Funciones</a>
+    <a href="#ventajas" data-ir="3">Ventajas</a>
+    <a href="#como-funciona" data-ir="4">Cómo funciona</a>
+    <a href="#planes" data-ir="5">Planes</a>
+    <a href="#contacto" data-ir="6">Contacto</a>
+  </nav>
+  <div class="lnav-acciones" id="lnavAcciones">
+    <a class="lbtn ghost" href="acceso.html#login">Iniciar sesión</a>
+    <a class="lbtn" href="acceso.html#registro">Registrarse</a>
+  </div>
+</header>
+
+<!-- ===== Diapositivas (la rueda del ratón avanza de lado) ===== -->
+<main class="slides" id="slides">
+
+  <!-- 1 · Portada -->
+  <section class="slide hero" id="inicio" aria-label="Inicio" data-fondo="fondo-portada">
+    <div class="hero-nubes" aria-hidden="true"></div>
+    <div class="hero-txt">
+      <img class="hero-logo" src="img/isotipo-azul.png" alt="">
+      <h1>SmartStock</h1>
+      <p class="hero-pill">Tu farmacia, localizada y al día</p>
+      <p class="hero-lead">Encuentra cualquier medicamento en segundos con un LED en su anaquel, recibe un aviso antes de que se agote o caduque, y deja que el historial de ventas te diga qué comprar.</p>
+      <div class="hero-cta">
+        <a class="lbtn grande" href="acceso.html#registro">Registra tu farmacia</a>
+        <a class="hero-link" href="#que-es" data-ir="1">Conoce cómo funciona →</a>
+      </div>
+    </div>
+    <svg class="hero-olas" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="#BCEEFF" d="M0 150 C 220 80 420 210 680 150 S 1160 70 1440 140 V320 H0Z"/>
+      <path fill="#8FE3FF" d="M0 205 C 260 140 460 260 760 200 S 1220 150 1440 215 V320 H0Z"/>
+      <path fill="#53D4FF" d="M0 250 C 240 205 520 300 800 250 S 1240 215 1440 262 V320 H0Z"/>
+      <path fill="#0CB7F2" d="M0 292 C 300 262 560 322 860 290 S 1260 272 1440 298 V320 H0Z"/>
+    </svg>
+  </section>
+
+  <!-- 2 · Qué es -->
+  <section class="slide oscura s-que" id="que-es" aria-label="Qué es SmartStock" data-fondo="fondo-que-es">
+    <figure class="foto circ izq" data-img="que-es-izquierda" data-nota="Mostrador o fachada de la farmacia"></figure>
+    <figure class="foto circ der" data-img="que-es-derecha" data-nota="Anaquel con medicamentos"></figure>
+    <div class="slide-in centro angosto">
+      <p class="eyebrow claro">Qué es</p>
+      <h2>¿Qué es SmartStock?</h2>
+      <p class="lead claro">Una aplicación web para farmacias independientes que une localización, control de existencias y análisis predictivo en un solo lugar.</p>
+      <p class="lead claro">En lugar de buscar a mano, descubrir faltantes cuando el cliente ya está en el mostrador y comprar por intuición, tu farmacia pasa de reaccionar a anticiparse.</p>
+    </div>
+  </section>
+
+  <!-- 3 · Funciones -->
+  <section class="slide oscura s-fun" id="funciones" aria-label="Funciones" data-fondo="fondo-funciones">
+    <div class="slide-in">
+      <h2 class="centrado">Tres funciones, un solo sistema</h2>
+      <div class="fun-fila">
+        <article class="fun-card">
+          <svg viewBox="0 0 24 24"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"/></svg>
+          <h3>Localización</h3><p>Un LED ilumina el lugar exacto del medicamento.</p>
+        </article>
+        <article class="fun-card">
+          <svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></svg>
+          <h3>Alertas</h3><p>Avisos de stock mínimo y de lotes por caducar.</p>
+        </article>
+        <article class="fun-card">
+          <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>
+          <h3>Predicción</h3><p>El historial de ventas sugiere qué comprar.</p>
+        </article>
+        <div class="fun-foto">
+          <figure class="foto" data-img="funciones" data-nota="Pantalla de la app o LED encendido"></figure>
+          <p>Cada entrada y salida actualiza el inventario por lote. Con ese historial, el sistema detecta la temporada alta de cada categoría y recomienda cuánto reabastecer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Ventajas -->
+  <section class="slide oscura s-ven" id="ventajas" aria-label="Ventajas" data-fondo="fondo-ventajas">
+    <div class="ven-fila">
+      <figure class="foto alta" data-img="ventajas-izquierda" data-nota="Empleado atendiendo en mostrador"></figure>
+      <div class="ven-card">
+        <h2>Ventajas en el día a día</h2>
+        <ul>
+          <li><b>Menos tiempo buscando.</b> El LED guía al lugar correcto, aun con nombres parecidos.</li>
+          <li><b>Sin faltantes por sorpresa.</b> La alerta llega antes de que el producto se agote.</li>
+          <li><b>Menos merma.</b> Se surte primero el lote que vence antes.</li>
+          <li><b>Compras con datos.</b> La cantidad sugerida sale de tus propias ventas.</li>
+        </ul>
+      </div>
+      <figure class="foto alta corte" data-img="ventajas-derecha" data-nota="Manos con medicamento o receta"></figure>
+    </div>
+  </section>
+
+  <!-- 5 · Cómo funciona -->
+  <section class="slide s-como" id="como-funciona" aria-label="Cómo funciona">
+    <div class="slide-in dos">
+      <div>
+        <p class="eyebrow">Cómo funciona</p>
+        <h2>Cuatro pasos para empezar</h2>
+        <ol class="pasos">
+          <li><b>Registra tu farmacia</b><p>Llenas tus datos y eliges un plan. El Gratuito se activa al instante.</p></li>
+          <li><b>Carga tu catálogo</b><p>Cada medicamento con su lote, caducidad y lugar en el anaquel.</p></li>
+          <li><b>Opera como siempre</b><p>Registras entradas y salidas; el inventario se actualiza solo.</p></li>
+          <li><b>El sistema te avisa</b><p>Alertas, predicción de demanda y compras sugeridas.</p></li>
+        </ol>
+      </div>
+      <figure class="foto grande" data-img="como-funciona" data-nota="Persona usando SmartStock en tableta o celular"></figure>
+    </div>
+  </section>
+
+  <!-- 6 · Planes -->
+  <section class="slide alt" id="planes" aria-label="Planes y precios">
+    <div class="slide-in">
+      <p class="eyebrow">Planes</p>
+      <h2>Empieza gratis y crece cuando lo necesites</h2>
+      <div class="planes" id="planes-grid"></div>
+      <p class="nota">Precios por sucursal, en pesos mexicanos. El plan Gratuito se activa al registrarte; los demás los aprueba el equipo SmartStock.</p>
+    </div>
+  </section>
+
+  <!-- 7 · Contacto -->
+  <section class="slide cierre" id="contacto" aria-label="Contacto">
+    <div class="slide-in centro">
+      <img class="cierre-logo" src="img/logo-blanco.png" alt="SmartStock">
+      <p class="eyebrow claro">Empieza hoy</p>
+      <h2>Organiza tu farmacia con SmartStock</h2>
+      <p class="lead claro">El registro toma un par de minutos. En cuanto tu sucursal sea aprobada podrás iniciar sesión y cargar tu catálogo.</p>
+      <div class="hero-cta">
+        <a class="lbtn grande ambar" href="acceso.html#registro">Registra tu farmacia</a>
+        <a class="lbtn grande ghost-claro" href="acceso.html#login">Ya tengo cuenta</a>
+      </div>
+      <div class="equipo">
+        <h3>Equipo EvoluWare</h3>
+        <p>Ingeniería en Desarrollo y Gestión de Software · UT Nezahualcóyotl · Grupo ITIC-902M</p>
+        <p>Kaled Arellano · Jorge Esteban Pérez · Leyvi Reyes · Esmeralda Sánchez · Mónica Tentle</p>
+        <p><a href="https://github.com/EvoluWare-902M/SmartStock" target="_blank" rel="noopener">github.com/EvoluWare-902M/SmartStock</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== Controles de la presentación ===== -->
+<button class="flecha izq" id="flechaIzq" aria-label="Diapositiva anterior">←</button>
+<button class="flecha der" id="flechaDer" aria-label="Diapositiva siguiente">→</button>
+<div class="puntos" id="puntos" role="tablist" aria-label="Diapositivas"></div>
+<p class="pista" id="pista">Gira la rueda del ratón o usa ← → para avanzar</p>
+
+<script src="js/planes.js"></script>
+<script src="js/pages/landing.js"></script>
+</body>
+</html>

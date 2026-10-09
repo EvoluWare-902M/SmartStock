@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Registro de farmacia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/alta.css">
+</head>
+<body>
+
+<a class="alta-volver" href="acceso.html#registro">← Volver</a>
+
+<main class="alta" id="alta">
+
+  <!-- Barra de progreso -->
+  <header class="alta-top">
+    <div class="alta-marca">
+      <picture><source srcset="img/isotipo-blanco.png" media="(prefers-color-scheme: dark)"><img src="img/isotipo-azul.png" alt=""></picture>
+      <b>Smart<span>Stock</span></b>
+    </div>
+    <div class="alta-progreso" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1" id="progreso">
+      <div class="alta-linea"><i id="progresoRelleno"></i></div>
+      <ol id="progresoPasos"></ol>
+    </div>
+    <div class="alta-cuenta" id="progresoTxt">Paso 1 de 5</div>
+  </header>
+
+  <!-- Cuerpo: panel de contexto + campos del paso -->
+  <div class="alta-cuerpo" id="cuerpo">
+    <aside class="alta-lado" id="lado" aria-hidden="true"></aside>
+    <form class="alta-form" id="form" novalidate>
+      <div class="alta-campos" id="campos"></div>
+      <p class="alta-error" id="errorGeneral" role="alert"></p>
+      <footer class="alta-pie">
+        <button type="button" class="alta-btn sec" id="btnAtras">← Atrás</button>
+        <span class="alta-nota" id="notaPie">Los campos con * son obligatorios</span>
+        <button type="submit" class="alta-btn" id="btnSiguiente">Siguiente →</button>
+      </footer>
+    </form>
+  </div>
+
+  <!-- Resultado -->
+  <section class="alta-fin" id="fin" hidden></section>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/planes.js"></script>
+<script src="js/pages/alta.js"></script>
+</body>
+</html>
