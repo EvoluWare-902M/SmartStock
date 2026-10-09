@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Análisis inteligente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="ia">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Análisis inteligente <span class="ia-tag">IA</span></h2>
+        <p>Modelos que revisan tu inventario y tus movimientos para avisarte de lo que no se ve a simple vista.</p>
+      </header>
+      <div id="iaBloqueo"></div>
+      <div id="iaContenido">
+        <div class="card-list" id="iaHallazgos" style="margin-bottom:22px"></div>
+
+        <div class="tabs" role="tablist">
+          <button role="tab" data-tab="anomalias" class="activa">Movimientos inusuales</button>
+          <button role="tab" data-tab="abc">Clasificación ABC-XYZ</button>
+          <button role="tab" data-tab="caducidad">Riesgo de caducidad</button>
+          <button role="tab" data-tab="minimos">Mínimos sugeridos</button>
+          <button role="tab" data-tab="juntos">Se venden juntos</button>
+        </div>
+
+        <section id="tab-anomalias" class="tab-panel">
+          <p class="explica">El modelo aprende cuánto se vende normalmente de cada medicamento (mediana y dispersión de 6 meses) y marca las salidas que se alejan demasiado, las mermas grandes y lo registrado fuera de horario. Una anomalía no es necesariamente un error: es algo que conviene revisar.</p>
+          <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+            <table><thead><tr><th>Nivel</th><th>Fecha</th><th>Producto</th><th>Cantidad</th><th>Por qué se marcó</th><th>Registró</th></tr></thead><tbody id="iaAnomalias"></tbody></table>
+          </div>
+        </section>
+
+        <section id="tab-abc" class="tab-panel" hidden>
+          <p class="explica"><b>ABC</b> ordena los productos por el dinero que generan: A = los que suman 80 % de las ventas, B = el siguiente 15 %, C = el resto. <b>XYZ</b> mide qué tan estable es su demanda semanal: X estable, Y variable, Z errática. Juntas dicen cómo conviene administrar cada uno.</p>
+          <div class="stat-grid" id="iaAbcResumen"></div>
+          <div class="panel"><div class="chart-wrap" style="height:260px; border:none; padding:0;"><canvas id="iaPareto"></canvas></div></div>
+          <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+            <table><thead><tr><th>Clase</th><th>Producto</th><th>Vendido (6 meses)</th><th>% del total</th><th>Variabilidad</th><th>Cómo administrarlo</th></tr></thead><tbody id="iaAbc"></tbody></table>
+          </div>
+        </section>
+
+        <section id="tab-caducidad" class="tab-panel" hidden>
+          <p class="explica">Con el ritmo de venta de los últimos 90 días, el modelo simula cuántas unidades de cada lote alcanzarán a venderse antes de su fecha de caducidad (surtiendo primero lo que vence antes). Lo que sobra es el riesgo.</p>
+          <div class="stat-grid" id="iaCadResumen"></div>
+          <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+            <table><thead><tr><th>Riesgo</th><th>Producto</th><th>Lote</th><th>Caduca</th><th>Existencia</th><th>No se venderían</th><th>Pérdida estimada</th><th>Qué hacer</th></tr></thead><tbody id="iaCaducidad"></tbody></table>
+          </div>
+        </section>
+
+        <section id="tab-minimos" class="tab-panel" hidden>
+          <p class="explica">El stock mínimo es el aviso para volver a pedir. El modelo lo calcula para cada medicamento: lo que se vende mientras llega el pedido (<b>venta diaria × días que tarda su proveedor</b>) más un <b>colchón de seguridad</b> para los días en que se vende más de lo normal (nivel de servicio de 95 %). Si el mínimo es muy bajo te quedas sin producto; si es muy alto tienes dinero parado en el anaquel.</p>
+          <div class="toolbar">
+            <span class="muted" id="iaMinResumen"></span>
+            <button class="btn" id="iaMinAplicar" disabled>Aplicar seleccionados</button>
+          </div>
+          <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+            <table><thead><tr><th style="width:34px"><input type="checkbox" id="iaMinTodos" aria-label="Seleccionar todos"></th><th>Producto</th><th>Mínimo actual</th><th>Sugerido</th><th>Venta diaria</th><th>Proveedor</th><th>Cómo se calculó</th></tr></thead><tbody id="iaMinimos"></tbody></table>
+          </div>
+        </section>
+
+        <section id="tab-juntos" class="tab-panel" hidden>
+          <p class="explica">El modelo revisa los tickets del punto de venta y busca productos que aparecen juntos mucho más de lo que pasaría por casualidad. La <b>confianza</b> es el porcentaje de tickets con el primer producto que también llevan el segundo; la <b>fuerza</b> dice cuántas veces más frecuente es la combinación de lo esperado. En el punto de venta estas reglas aparecen como "Ofrece también", y sirven para decidir qué colocar cerca en el anaquel.</p>
+          <div class="stat-grid" id="iaJuntosResumen"></div>
+          <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+            <table><thead><tr><th>Quien lleva…</th><th>…también lleva</th><th>Confianza</th><th>Tickets juntos</th><th>Fuerza</th></tr></thead><tbody id="iaJuntos"></tbody></table>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../vendor/chart.umd.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/ia.js"></script>
+<script>
+  const session = requireSession(['dueno']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>

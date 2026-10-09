@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Predicción de demanda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="prediccion">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Predicción de demanda</h2>
+        <p>El modelo analiza el histórico real de ventas (tendencia y estacionalidad) para estimar los próximos 3 meses.</p>
+      </header>
+      <div id="predBloqueo"></div>
+      <div id="predContenido">
+        <div class="panel">
+          <div class="filters" style="margin-bottom:0">
+            <select id="modoSelect" aria-label="Analizar por">
+              <option value="categoria">Por categoría</option>
+              <option value="producto">Por medicamento</option>
+            </select>
+            <select id="catSelect" aria-label="Categoría o medicamento"></select>
+          </div>
+          <div class="chart-wrap" style="margin-top:16px;">
+            <canvas id="demandChart"></canvas>
+          </div>
+          <div class="stat-grid" id="predStats" style="margin:16px 0 0;"></div>
+          <div class="insight" id="insightText"></div>
+        </div>
+      
+        <div class="panel">
+          <div class="form-section-title" style="margin-top:0">Patrón estacional (índice por mes)</div>
+          <p class="muted" style="margin:0 0 10px; font-size:.85rem;">1.0 = mes promedio. Arriba de 1.0 el producto se vende más de lo normal en ese mes.</p>
+          <div class="chart-wrap" style="height:220px; border:none; padding:0;"><canvas id="seasonChart"></canvas></div>
+        </div>
+      
+        <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+          <table>
+            <thead><tr><th>Categoría</th><th>Demanda estimada (mes en curso)</th><th>Temporada alta</th><th>Tendencia anual</th></tr></thead>
+            <tbody id="resumenBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../vendor/chart.umd.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/prediccion.js"></script>
+<script>
+  const session = requireSession(['dueno']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>
