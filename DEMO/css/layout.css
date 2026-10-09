@@ -1,0 +1,35 @@
+/* ===== layout.css : estructura de la app (sidebar + contenido) ===== */
+.app{display:flex; min-height:100vh;}
+
+nav.side{
+  width:220px; flex-shrink:0; background:var(--teal-dark); color:#EFF7F4;
+  padding:28px 16px; display:flex; flex-direction:column; gap:6px;
+}
+.brand{font-size:1.25rem; font-weight:700; margin:0 8px 26px; letter-spacing:.2px;}
+.brand span{color:var(--amber);}
+nav.side a.nav-btn{
+  text-decoration:none; cursor:pointer; padding:11px 14px; border-radius:9px;
+  font-size:.95rem; color:#CFE4DE; display:flex; align-items:center; gap:10px;
+}
+nav.side a.nav-btn:hover{background:rgba(255,255,255,.06);}
+nav.side a.nav-btn.active{background:#0F5B52; color:#fff; font-weight:600;}
+nav.side .group-label{font-size:.72rem; color:#7FA69D; margin:14px 8px 4px; letter-spacing:.2px;}
+nav.side .group-label:first-of-type{margin-top:2px;}
+
+.user-footer{margin-top:auto; padding:12px; border-top:1px solid rgba(255,255,255,.1); font-size:.82rem;}
+.user-footer .who{color:#EFF7F4; font-weight:600; margin-bottom:2px;}
+.user-footer .role{color:#8FB3AA; margin-bottom:10px;}
+.user-footer button{all:unset; cursor:pointer; font-size:.82rem; color:#CFE4DE; padding:6px 0;}
+.user-footer button:hover{color:#fff;}
+
+main{flex:1; padding:32px 40px; max-width:1000px;}
+header.view-head{margin-bottom:24px;}
+header.view-head h2{margin:0 0 4px; font-size:1.5rem;}
+header.view-head p{margin:0; color:var(--muted); font-size:.92rem;}
+
+@media (max-width: 720px){
+  .app{flex-direction:column;}
+  nav.side{width:100%; flex-direction:row; flex-wrap:wrap; align-items:center;}
+  nav.side .group-label, nav.side .user-footer{display:none;}
+  main{padding:20px;}
+}

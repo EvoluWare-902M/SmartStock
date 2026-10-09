@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Historial de movimientos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+<body data-page="historial">
+<div class="app">
+  <nav class="side" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Historial de movimientos</h2>
+        <p>Consulta cronológica de entradas y salidas por medicamento.</p>
+      </header>
+
+      <div class="filters">
+        <select id="histProducto"><option value="">Todos los productos</option></select>
+        <select id="histTipo">
+          <option value="">Todos los movimientos</option>
+          <option value="Entrada">Entradas</option>
+          <option value="Salida">Salidas</option>
+        </select>
+        <input type="date" id="histDesde" title="Desde">
+        <input type="date" id="histHasta" title="Hasta">
+      </div>
+
+      <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+        <table>
+          <thead><tr><th>Fecha</th><th>Producto</th><th>Lote</th><th>Movimiento</th><th>Cantidad</th><th>Motivo</th><th>Responsable</th></tr></thead>
+          <tbody id="histBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/data.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/historial.js"></script>
+<script>
+  const session = requireSession(['dueño','empleado']);
+  if(session){ renderNav(session); initPage(session); }
+</script>
+</body>
+</html>
