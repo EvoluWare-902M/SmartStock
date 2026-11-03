@@ -1,0 +1,33 @@
+Imágenes de la portada (public/index.html)
+==========================================
+
+La portada ya incluye imágenes en todos los espacios:
+  - que-es-*.svg y ventajas-*.svg son ilustraciones vectoriales con la paleta del proyecto.
+  - funciones.png y como-funciona.png son capturas reales de la aplicación.
+
+Para cambiarlas, guarda tu imagen con EXACTAMENTE el mismo nombre (en .jpg,
+.png, .webp o .svg) y borra la anterior. Si hay varias con el mismo nombre se
+usa primero .jpg, luego .png, .webp y .svg. Si un archivo no existe, la portada
+muestra un marcador en su lugar.
+
+LOGOTIPO
+  isotipo-azul.png / isotipo-blanco.png   solo el símbolo, fondo transparente
+  logo-azul.png / logo-blanco.png         símbolo + nombre, fondo transparente
+  favicon.png                             icono de la pestaña del navegador
+
+FOTOS (aparecen dentro de la diapositiva)
+  que-es-izquierda    círculo a la izquierda   cuadrada, mínimo 900 x 900 px
+  que-es-derecha      círculo a la derecha     cuadrada, mínimo 900 x 900 px
+  funciones           foto horizontal          16:9, mínimo 1000 x 560 px
+  ventajas-izquierda  foto vertical            3:4, mínimo 750 x 1000 px
+  ventajas-derecha    foto vertical            3:4, mínimo 750 x 1000 px
+  como-funciona       foto grande              4:3, mínimo 1200 x 900 px
+
+FONDOS (opcionales; cubren toda la diapositiva, oscurecidos para leer el texto)
+  fondo-portada       diapositiva 1            1920 x 1080 px
+  fondo-que-es        diapositiva 2            1920 x 1080 px
+  fondo-funciones     diapositiva 3            1920 x 1080 px
+  fondo-ventajas      diapositiva 4            1920 x 1080 px
+
+Sugerencia: usen fotos propias de la farmacia o de bancos libres de derechos
+(por ejemplo Unsplash o Pexels) y comprímanlas a menos de 400 KB cada una.

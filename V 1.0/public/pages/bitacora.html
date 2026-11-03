@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Bitácora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="bitacora">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Bitácora de auditoría</h2>
+        <p>Registro de quién aprobó, rechazó, suspendió o cambió algo en la plataforma, y cuándo.</p>
+      </header>
+      <div class="filters">
+        <input type="text" id="biBuscar" placeholder="Buscar en el detalle o por persona" aria-label="Buscar" style="min-width:260px">
+        <select id="biAccion" aria-label="Tipo de acción">
+          <option value="">Todas las acciones</option><option value="sucursal.">Sucursales</option><option value="usuario.">Usuarios</option><option value="aviso.">Avisos</option>
+        </select>
+        <input type="date" id="biDesde" aria-label="Desde" title="Desde">
+        <input type="date" id="biHasta" aria-label="Hasta" title="Hasta">
+      </div>
+      <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+        <table>
+          <thead><tr><th>Fecha</th><th>Quién</th><th>Acción</th><th>Detalle</th><th>Sucursal</th></tr></thead>
+          <tbody id="biBody"></tbody>
+        </table>
+        <div class="pager"><span id="biInfo"></span>
+          <button class="btn secondary sm" id="biPrev">← Recientes</button><button class="btn secondary sm" id="biNext">Anteriores →</button></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/bitacora.js"></script>
+<script>
+  const session = requireSession(['superadmin']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>

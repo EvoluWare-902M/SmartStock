@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartStock — Panel de plataforma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../img/favicon.png">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/nav.css">
+</head>
+<body data-page="plataforma">
+<div class="app">
+  <nav class="topbar" id="sidebarRoot"></nav>
+  <main>
+    <section>
+      <header class="view-head">
+        <h2>Panel de la plataforma</h2>
+        <p>Estado general de SmartStock: sucursales, planes, registros y a quién conviene dar seguimiento.</p>
+      </header>
+      <div class="stat-grid" id="plStats"></div>
+      <div id="plPendientes"></div>
+      <div class="chart-grid">
+        <div class="chart-wrap"><canvas id="plRegistros"></canvas></div>
+        <div class="chart-wrap"><canvas id="plPlanes"></canvas></div>
+      </div>
+      <div class="panel table-wrap" style="padding:0; overflow:hidden;">
+        <div class="panel-tit">Salud de las sucursales activas <span class="ia-tag">IA</span>
+          <small>Puntuación de 0 a 100 calculada con su actividad reciente. Las más bajas son las que tienen más riesgo de abandonar.</small></div>
+        <table>
+          <thead><tr><th>Sucursal</th><th>Plan</th><th>Salud</th><th>Último acceso</th><th>Movimientos (30 días)</th><th>Señales</th><th></th></tr></thead>
+          <tbody id="plSalud"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast"></div>
+<script src="../vendor/chart.umd.js"></script>
+<script src="../js/api.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/pages/plataforma.js"></script>
+<script>
+  const session = requireSession(['superadmin']);
+  if(session){ renderNav(session); Promise.resolve(initPage(session)).catch(e => toast(e.message, true)); }
+</script>
+</body>
+</html>
