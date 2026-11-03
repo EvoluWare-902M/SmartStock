@@ -1,5 +1,6 @@
 /* ===== db.js : pool de conexiones a MySQL ===== */
 const mysql = require('mysql2/promise');
+const { sslConfig } = require('./ssl');
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
@@ -7,6 +8,7 @@ const pool = mysql.createPool({
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'smartstock',
+  ssl: sslConfig(),         // solo se activa con DB_SSL=true (Aiven, TiDB Cloud)
   waitForConnections: true,
   connectionLimit: 10,
   dateStrings: true,        // fechas como 'YYYY-MM-DD' (evita desfases de zona horaria)
