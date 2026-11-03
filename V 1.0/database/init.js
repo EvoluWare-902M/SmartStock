@@ -12,6 +12,7 @@ const fs = require('fs');
 const path = require('path');
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcryptjs');
+const { sslConfig } = require('../server/ssl');
 
 const DB_NAME = process.env.DB_NAME || 'smartstock';
 
@@ -90,6 +91,8 @@ async function main(){
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
     multipleStatements: true,
+    ssl: sslConfig(),
+    connectTimeout: 20000,
   });
 
   console.log('→ Creando base de datos y tablas...');
@@ -303,5 +306,7 @@ main().catch(err => {
   console.error('\n❌ Error al inicializar la base de datos:', err.message);
   if (err.code === 'ECONNREFUSED') console.error('   ¿Está encendido MySQL? Revisa DB_HOST y DB_PORT en el archivo .env');
   if (err.code === 'ER_ACCESS_DENIED_ERROR') console.error('   Usuario o contraseña de MySQL incorrectos. Revisa DB_USER y DB_PASSWORD en .env');
+  if (err.code === 'ETIMEDOUT' || err.code === 'ENOTFOUND') console.error('   No se pudo llegar al servidor. Revisa DB_HOST y DB_PORT, y que el servicio de Aiven esté encendido (Running).');
+  if (err.code === 'HANDSHAKE_SSL_ERROR' || /certificate|SSL/i.test(err.message)) console.error('   Problema con SSL. Revisa DB_SSL=true y que database/ca.pem sea el CA certificate de Aiven.');
   process.exit(1);
 });
